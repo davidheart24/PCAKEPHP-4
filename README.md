@@ -1,4 +1,4 @@
-# CakePHP Application Skeleton
+# Playing CakePHP 4
 
 [![Build Status](https://img.shields.io/github/workflow/status/cakephp/app/CakePHP%20App%20CI/master?style=flat-square)](https://github.com/cakephp/app/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
@@ -42,7 +42,7 @@ automated upgrades, so you have to do any updates manually.
 
 ## Configuration
 
-Read and edit the environment specific `config/app_local.php` and setup the 
+Read and edit the environment specific `config/app_local.php` and setup the
 `'Datasources'` and any other configuration relevant for your application.
 Other environment agnostic settings can be changed in `config/app.php`.
 
