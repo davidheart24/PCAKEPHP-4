@@ -16,7 +16,6 @@
     <?= $this->Html->css('signin') ?>
 </head>
 <body class="text-center">
-
     <?= $this->fetch('content') ?>
 </body>
 </html>

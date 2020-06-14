@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Controller\Controller;
 
 /**
@@ -80,7 +81,15 @@ class AppController extends Controller
 	 */
 	protected function _noAuthenticationActions() {
 		return [];
-	}
+    }
+
+
+    public function beforeRender(EventInterface  $event){
+        // $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+        $this->viewBuilder()->setTheme('AdminLTE');
+
+    }
+
 
 
 }
