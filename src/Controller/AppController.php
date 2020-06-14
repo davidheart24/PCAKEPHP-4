@@ -53,13 +53,12 @@ class AppController extends Controller
     }
 
 	/**
-	 * _noAuthenticationActions method
-	 *
+	 * _offAuthentication method
 	 * By default, nothing is available to unauthenticated users.
 	 * Any controller with special permissions must override this function.
 	 * @return array of actions that can be taken even by visitors that are not logged in.
 	 */
-	protected function _noAuthenticationActions() {
+	protected function _offAuthentication() {
 		return [];
     }
 
