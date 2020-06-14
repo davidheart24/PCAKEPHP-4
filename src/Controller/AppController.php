@@ -41,8 +41,27 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', ['enableBeforeRedirect' => false]);
         $this->loadComponent('Flash');
+
+
+		$this->loadComponent('Authentication.Authentication', [
+			'logoutRedirect' => '/'
+        ]);
+
+
+        // $this->loadComponent('Authentication.Authentication', [
+        //     'logoutRedirect' => [
+        //         '_name' => 'top',
+        //     ],
+        // ]);
+
+
+        $this->Authentication->allowUnauthenticated(['index', 'login']);
+
+		// $allowed = $this->request->is('json') ? [] : $this->_noAuthenticationActions();
+		// $this->Authentication->allowUnauthenticated($allowed);
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -50,4 +69,18 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+	/**
+	 * _noAuthenticationActions method
+	 *
+	 * By default, nothing is available to unauthenticated users.
+	 * Any controller with special permissions must override this function.
+	 *
+	 * @return array of actions that can be taken even by visitors that are not logged in.
+	 */
+	protected function _noAuthenticationActions() {
+		return [];
+	}
+
+
 }

@@ -397,5 +397,8 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'cookie'   => 'PCAKE4',
+        'timeout'  => 120 //2hrs
     ],
+
 ];

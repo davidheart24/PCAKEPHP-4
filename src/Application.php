@@ -38,8 +38,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
-implements AuthenticationServiceProviderInterface
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -62,6 +61,9 @@ implements AuthenticationServiceProviderInterface
         if (Configure::read('debug')) {
             $this->addPlugin('DebugKit');
         }
+
+
+        $this->addPlugin('Authentication');
 
         // Load more plugins here
     }
@@ -129,27 +131,27 @@ implements AuthenticationServiceProviderInterface
      * @return \Authentication\AuthenticationServiceInterface
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface {
-        $service = new AuthenticationService();
-
-        // Define where users should be redirected to when they are not authenticated
-        $service->setConfig([
+        $service = new AuthenticationService([
             'unauthenticatedRedirect' => '/users/login',
             'queryParam' => 'redirect',
         ]);
 
+
         $fields = [
-            'username' => 'email',
+            'username' => 'user_name',
             'password' => 'password'
         ];
+
+
+        // Load identifiers
+        $service->loadIdentifier('Authentication.Password', compact('fields'));
+
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Session');
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
             'loginUrl' => '/users/login'
         ]);
-
-        // Load identifiers
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
 
         return $service;
     }
