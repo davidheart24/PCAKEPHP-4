@@ -10,6 +10,23 @@ use Cake\Validation\Validator;
 
 /**
  * Users Model
+ *
+ * @property \App\Model\Table\LocksTable&\Cake\ORM\Association\HasMany $Locks
+ * @property \App\Model\Table\PeopleTable&\Cake\ORM\Association\HasMany $People
+ *
+ * @method \App\Model\Entity\User newEmptyEntity()
+ * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\User get($primaryKey, $options = [])
+ * @method \App\Model\Entity\User findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\User[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\User|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
 class UsersTable extends Table
 {
@@ -75,12 +92,17 @@ class UsersTable extends Table
     }
 
     /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        // $rules->add($rules->isUnique(['email']));
-        // $rules->add($rules->isUnique(['user_name']));
-        $rules->add($rules->isUnique(['user_name'], __('That username is already taken')));
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['user_name']));
+
         return $rules;
     }
 }
