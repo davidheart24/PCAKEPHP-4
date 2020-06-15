@@ -62,8 +62,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             $this->addPlugin('DebugKit');
         }
 
-        $this->addPlugin('Authentication');
+
         $this->addPlugin('AdminLTE');
+        $this->addPlugin('Authentication');
+
 
     }
 

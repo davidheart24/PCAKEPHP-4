@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use Cake\Event\EventInterface;
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -63,9 +64,12 @@ class AppController extends Controller
     }
 
     public function beforeRender(EventInterface  $event){
-        // $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+
+        $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
         $this->viewBuilder()->setTheme('AdminLTE');
 
+        // $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+        // $this->viewBuilder()->setTheme('AdminLTE');
     }
 
 }

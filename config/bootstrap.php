@@ -176,7 +176,9 @@ ServerRequest::addDetector('tablet', function ($request) {
 
     return $detector->isTablet();
 });
-
+// Configure::write('DebugKit.panels', ['DebugKit.Packages' => true]);
+// Configure::write('DebugKit.forceEnable', true);
+// Configure::write('DebugKit.ignoreAuthorization', true);
 /*
  * You can set whether the ORM uses immutable or mutable Time types.
  * The default changed in 4.0 to immutable types. You can uncomment
@@ -213,3 +215,18 @@ ServerRequest::addDetector('tablet', function ($request) {
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+Configure::write('Theme', [
+    'title' => 'PCAKE4',
+    'logo' => [
+        'mini' => 'PC4',
+        'large' => 'PCAKE4'
+    ],
+    'login' => [
+        'show_remember' => true,
+        'show_register' => true,
+        'show_social'   => true
+    ],
+    'folder' => ROOT,
+    'skin' => 'black' // default is 'blue'
+]);
