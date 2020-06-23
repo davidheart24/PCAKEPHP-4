@@ -47,9 +47,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function bootstrap(): void
     {
+
+
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
-
+        // $this->addPlugin('CakeSpreadsheet', ['bootstrap' => true, 'routes' => true]);
+        $this->addPlugin('PcakeSpreadsheet', ['bootstrap' => true, 'routes' => true]);
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
         }
@@ -66,6 +70,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $this->addPlugin('AdminLTE');
         $this->addPlugin('Authentication');
 
+        // $this->addPlugin('PcakeSpreadsheet', ['bootstrap' => true, 'routes' => true]);
 
     }
 

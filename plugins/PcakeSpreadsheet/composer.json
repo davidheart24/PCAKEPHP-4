@@ -1,0 +1,25 @@
+{
+    "name": "your-name-here/PcakeSpreadsheet",
+    "description": "PcakeSpreadsheet plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2",
+        "cakephp/cakephp": "^4.0",
+        "phpoffice/phpspreadsheet": "^1.13"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PcakeSpreadsheet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PcakeSpreadsheet\\Test\\": "tests/",
+            "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
+        }
+    }
+}

@@ -1,3 +1,12 @@
+
+<?php
+
+
+echo $this->Html->link(__('Export'), ['_ext' => 'xlsx'], ['class'=>'add']);
+
+?>
+
+
 <?= $this->Form->create(NULL, ['method' => 'post', 'class' => 'form-signin']); ?>
 <?= $this->Flash->render() ?>
     <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->

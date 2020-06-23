@@ -1,7 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
   <li class="header">MAIN NAVIGATION</li>
-  <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-dashboard text-yellow"></i> <span>DASHBOARD</span></a></li>
-  <!-- <li class="treeview">
+  <li class="treeview">
     <a href="#">
       <i class="fa fa-dashboard"></i> <span>Dashboard</span>
       <span class="pull-right-container">
@@ -13,8 +12,8 @@
       <li><a href="<?php echo $this->Url->build('/pages/home2'); ?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
       <li><?= $this->Html->link('Excel file','/nowitski/dirk', ['_ext' => 'xlsx']); ?></li>
     </ul>
-  </li> -->
-  <!-- <li class="treeview">
+  </li>
+  <li class="treeview">
     <a href="#">
       <i class="fa fa-files-o"></i>
       <span>Layout Options</span>
@@ -131,18 +130,44 @@
       <li><a href="<?php echo $this->Url->build('/pages/examples/blank'); ?>"><i class="fa fa-circle-o"></i> Blank Page</a></li>
       <li><a href="<?php echo $this->Url->build('/pages/examples/pace'); ?>"><i class="fa fa-circle-o"></i> Pace Page</a></li>
     </ul>
-  </li> -->
+  </li>
   <li class="treeview">
     <a href="#">
-      <i class="fa fa-share"></i> <span>SETTINGS</span>
+      <i class="fa fa-share"></i> <span>Multilevel</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
     <ul class="treeview-menu">
-      <li><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
-      <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li> -->
+      <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+      <li class="treeview">
+        <a href="#"><i class="fa fa-circle-o"></i> Level One
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+          <li class="treeview">
+            <a href="#"><i class="fa fa-circle-o"></i> Level Two
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
     </ul>
   </li>
-
+  <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+  <li class="header">LABELS</li>
+  <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+  <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+  <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+  <li><a href="<?php echo $this->Url->build('/pages/debug'); ?>"><i class="fa fa-bug"></i> <span>Debug</span></a></li>
 </ul>

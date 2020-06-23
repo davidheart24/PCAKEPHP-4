@@ -30,6 +30,14 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller
 {
+    // public $components = [
+    //     'RequestHandler' => [
+    //         'viewClassMap' => [
+    //             'xlsx' => 'CakeSpreadsheet.Spreadsheet',
+    //         ],
+    //     ]
+    // ];
+
     /**
      * Initialization hook method.
      *
@@ -43,14 +51,22 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler', ['enableBeforeRedirect' => false]);
-        $this->loadComponent('Flash');
+        // $this->loadComponent('RequestHandler', ['enableBeforeRedirect' => false]);
 
-		$this->loadComponent('Authentication.Authentication', [
-			'logoutRedirect' => '/'
+        $this->loadComponent('RequestHandler', [
+            'enableBeforeRedirect' => false,
+            'viewClassMap' => [
+                'xlsx' => 'PcakeSpreadsheet.Spreadsheet'
+            ]
         ]);
 
-        $this->Authentication->allowUnauthenticated(['index', 'login']);
+        $this->loadComponent('Flash');
+
+		// $this->loadComponent('Authentication.Authentication', [
+		// 	'logoutRedirect' => '/'
+        // ]);
+
+        //$this->Authentication->allowUnauthenticated(['index', 'login']);
     }
 
 	/**
@@ -65,11 +81,10 @@ class AppController extends Controller
 
     public function beforeRender(EventInterface  $event){
 
-        $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+        if ($this->request->getParam('_ext') !== 'xlsx') {
+            $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+        }
         $this->viewBuilder()->setTheme('AdminLTE');
-
-        // $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
-        // $this->viewBuilder()->setTheme('AdminLTE');
     }
 
 }

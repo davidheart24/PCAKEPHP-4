@@ -21,10 +21,16 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Router;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Route\DashedRoute;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
+// Router::setExtensions('xlsx');
+
+// Router::extensions(['xlsx']);
+
+// $routes->setExtensions(['xlsx']);
 /*
  * The default class to use for all routes
  *
@@ -44,8 +50,10 @@ use Cake\Routing\RouteBuilder;
  */
 /** @var \Cake\Routing\RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
+$routes->setExtensions(['xlsx']);
 
 $routes->scope('/', function (RouteBuilder $builder) {
+
     // Register scoped middleware for in scopes.
     $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
         'httpOnly' => true,
@@ -57,6 +65,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->applyMiddleware('csrf');
 
+    //$builder->setExtensions(['xlsx']);
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file

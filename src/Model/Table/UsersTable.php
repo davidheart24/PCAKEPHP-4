@@ -105,4 +105,32 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function getExportConfig() {
+        $header = [__('Field label 1'), __('Field label 2'), __('Field label 3'), __('Field label 4')];
+        $width = [35, 20, 10, 15];
+        $align = ['L', 'L', 'C', 'R'];
+        $fileName = __('Export file');
+
+        return compact('header', 'width', 'align', 'fileName');
+     }
+
+     public function getExportData($conditions = []) {
+         $result = [
+             'Group header (List name)' => [
+                 'Sub header' => [
+                     [
+                         'Field value 1',
+                         'Field value 2',
+                         'Field value 3',
+                         'Field value 4',
+                     ]
+                 ]
+             ]
+         ];
+
+         return $result;
+     }
+
+
 }
