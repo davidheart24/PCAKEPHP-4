@@ -9,3 +9,11 @@ Project created for study about CakePHP 4.
 A skeleton for creating applications with [CakePHP](https://cakephp.org) 4.x.
 
 The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+
+# TODO
+
+- Create Spreadsheet Plugin - done
+- Implement Admin LTE Template - done
+- Create Api Boilerplate
+
+

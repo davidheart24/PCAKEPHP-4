@@ -24,6 +24,7 @@ use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Routing\Router;
 
 // Authentication
 use Authentication\AuthenticationService;
@@ -48,11 +49,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function bootstrap(): void
     {
 
-
-
         // Call parent to load bootstrap from files.
         parent::bootstrap();
-        // $this->addPlugin('CakeSpreadsheet', ['bootstrap' => true, 'routes' => true]);
+
         $this->addPlugin('PcakeSpreadsheet', ['bootstrap' => true, 'routes' => true]);
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
@@ -83,28 +82,12 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
         $middlewareQueue
-            // Catch any exceptions in the lower layers,
-            // and make an error page/response
             ->add(new ErrorHandlerMiddleware(Configure::read('Error')))
-
-            // Handle plugin/theme assets like CakePHP normally does.
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
-
-            // Add routing middleware.
-            // If you have a large number of routes connected, turning on routes
-            // caching in production could improve performance. For that when
-            // creating the middleware instance specify the cache config name by
-            // using it's second constructor argument:
-            // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this))
-
-            // Parse various types of encoded request bodies so that they are
-            // available as array through $request->getData()
-            // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
             ->add(new BodyParserMiddleware())
-
             ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
@@ -112,9 +95,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
     /**
      * Bootrapping for CLI application.
-     *
-     * That is when running commands.
-     *
      * @return void
      */
     protected function bootstrapCli(): void
@@ -124,10 +104,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         } catch (MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }
-
         $this->addPlugin('Migrations');
-
-        // Load more plugins here
     }
 
 
@@ -137,26 +114,28 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      * @return \Authentication\AuthenticationServiceInterface
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface {
+
         $service = new AuthenticationService([
-            'unauthenticatedRedirect' => '/users/login',
+            'unauthenticatedRedirect' => Router::url(['controller' => 'Users', 'action' => 'login', 'prefix' => 'Auth']),
             'queryParam' => 'redirect',
         ]);
 
-
+         //Fields
         $fields = [
-            'username' => 'user_name',
+            'username' => 'username',
             'password' => 'password'
         ];
-
 
         // Load identifiers
         $service->loadIdentifier('Authentication.Password', compact('fields'));
 
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Session');
+
+        // Configure form data check to pick email and password
         $service->loadAuthenticator('Authentication.Form', [
-            'fields' => $fields,
-            'loginUrl' => '/users/login'
+            'fields'   => $fields,
+            'loginUrl' => Router::url(['controller' => 'Users', 'action' => 'login', 'prefix' => 'Auth']),
         ]);
 
         return $service;
